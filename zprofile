@@ -84,4 +84,58 @@
     )
     source $ZSH/oh-my-zsh.sh
 
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Shell syntax highlighting                                                 │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+
+#   Define path to oh-my-zsh plugins.
+    PATH_TO_PLUGINS="$XDG_CONFIG_HOME/zsh/oh-my-zsh/plugins" 
+
+#   Enable syntax-highlighting for zsh.
+    source $PATH_TO_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Shell command history                                                     │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+
+#   Enable sharing of command history between multiple shell sessions.
+    setopt sharehistory
+
+#   Define path to command-history file.
+    HISTFILE="$XDG_CACHE_HOME/zsh/history"
+#   NOTE: This is overwritten in `../zsh/zshrc` for zsh-specific history.
+#   TODO: Setup having only a single (shell-independent) history file?
+
+#   Define format of timestamps for command-history.
+    export HIST_STAMPS="yyyy-mm-dd"
+
+#   Define nr. of command-history entries saved in memory.
+    export HISTSIZE=10000
+
+#   Define nr. of command-history entries saved to file.
+    export SAVEHIST=100000
+
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Command auto-suggest                                                      │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+
+#   Make command-suggestions case-insensitive. 
+    export CASE_SENSITIVE="false"  
+
+#   Define strategy for getting command-suggestions.
+    export ZSH_AUTOSUGGEST_STRATEGY=(
+        history 
+        completion
+    )
+
+#   Define color of command suggestions.
+    export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#505050"  
+
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Java                                                                      │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+
+#   TODO ... (Add description.)
+    export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 

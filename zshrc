@@ -10,70 +10,6 @@
 # [[ -o login ]] && print "" || echo "Non-Login"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
-# │ List of plugins                                                           │
-# ╰───────────────────────────────────────────────────────────────────────────╯
-
-#   Define list of plugins to be loaded by oh-my-zsh.
-    plugins=(
-      # archlinux
-        colored-man-pages   # Add color to man-pages.
-        copyfile	    # Copy file to clipboard: `copyfile <file>`.
-        copypath	    # Copy pwd to clipboard:  `copypath <path>`.
-        copybuffer          # Copy the text in the prompt via `Ctrl-o`.
-      # dirhistory          # Use `Alt+Left/Right` to move through history, `Alt+Up` to go to parent.
-      # emoji-clock	    # Display time (30min. accuracy).
-        fzf                 # Enable fuzzy auto-completion.
-        git
-      # npm
-      # macos
-      # pip
-      # python
-        sudo                # Press `Escape` twice to sudo repeat command.
-      # taskwarrior         # Add auto-completion for taskwarrior.
-        web-search
-      # wd                  
-        zsh-autosuggestions
-    )
-    source $ZSH/oh-my-zsh.sh
-
-# ╭───────────────────────────────────────────────────────────────────────────╮
-# │ Shell command history                                                     │
-# ╰───────────────────────────────────────────────────────────────────────────╯
-
-#   Enable sharing of command history between multiple shell sessions.
-    setopt sharehistory
-
-#   Define path to command-history file.
-    HISTFILE="$XDG_CACHE_HOME/zsh/history"
-#   NOTE: This is overwritten in `../zsh/zshrc` for zsh-specific history.
-#   TODO: Setup having only a single (shell-independent) history file?
-
-#   Define format of timestamps for command-history.
-    HIST_STAMPS="yyyy-mm-dd"
-
-#   Define nr. of command-history entries saved in memory.
-    HISTSIZE=10000
-
-#   Define nr. of command-history entries saved to file.
-    SAVEHIST=100000
-
-# ╭───────────────────────────────────────────────────────────────────────────╮
-# │ Command auto-suggest                                                      │
-# ╰───────────────────────────────────────────────────────────────────────────╯
-
-#   Make command-suggestions case-insensitive. 
-    CASE_SENSITIVE="false"  
-
-#   Define strategy for getting command-suggestions.
-    ZSH_AUTOSUGGEST_STRATEGY=(
-        history 
-        completion
-    )
-
-#   Define color of command suggestions.
-    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#505050"  
-
-# ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Zsh line editor                                                           │
 # ╰───────────────────────────────────────────────────────────────────────────╯
 
@@ -99,23 +35,6 @@
 
 #   Include hidden files.
     _comp_options+=(globdots)  
-
-# ╭───────────────────────────────────────────────────────────────────────────╮
-# │ Shell syntax highlighting                                                 │
-# ╰───────────────────────────────────────────────────────────────────────────╯
-
-#   Define path to oh-my-zsh plugins.
-    PATH_TO_PLUGINS="$XDG_CONFIG_HOME/zsh/oh-my-zsh/plugins" 
-
-#   Enable syntax-highlighting for zsh.
-    source $PATH_TO_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# ╭───────────────────────────────────────────────────────────────────────────╮
-# │ Java                                                                      │
-# ╰───────────────────────────────────────────────────────────────────────────╯
-
-#   TODO ... (Add description.)
-    export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Zoxide                                                                    │
@@ -156,9 +75,6 @@
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ TMUX                                                                      │
 # ╰───────────────────────────────────────────────────────────────────────────╯
-
-#   Source TMUX config.
-    tmux source "$XDG_CONFIG_HOME/tmux/tmux.conf"
 
 #   Check if tmux is running.
 #   If not: start it!                       (and define default sessions: misc)
