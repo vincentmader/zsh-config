@@ -39,7 +39,7 @@ function prompter() {
 
     export PS1="
 ╭───($username|$location)$git_branch$venv
-╰─> " # 
+╰─--> " # 
 }
 
 precmd() { eval prompter }
