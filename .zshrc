@@ -40,21 +40,22 @@
 # │ Zoxide                                                                    │
 # ╰───────────────────────────────────────────────────────────────────────────╯
 
-#   Initialize `zoxide`.
+#   Initialize `zoxide`:
     eval "$(zoxide init zsh)"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
-# │ Source other zsh configuration files.                                     │
+# │ Source other zsh configuration files:                                     │
 # ╰───────────────────────────────────────────────────────────────────────────╯
 
-#   Source shell-independent config.
+#   Source shell-independent config:
     source "$XDG_CONFIG_HOME/shell/shellrc"
 
-#   Source aliases.
+#   Source aliases:
     source "$XDG_CONFIG_HOME/shell/aliasrc"
 
-#   Source prompter.
-    source "$XDG_CONFIG_HOME/zsh/prompter.sh"
+#   Source prompter:
+#   NOTE: Switch between e.g. `prompter_v1` and prompter_v2.
+    source "$XDG_CONFIG_HOME/zsh/prompter_v2.sh"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Various                                                                   │
