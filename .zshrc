@@ -252,3 +252,9 @@
   #  local dir
   #  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
   #}
+
+LFCD="$XDG_CONFIG_HOME/lf/lfcd.sh"
+if [ -f "$LFCD" ]; then
+    source "$LFCD"
+    bindkey -s '^o' 'lfcd\n'
+fi
