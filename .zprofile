@@ -6,17 +6,15 @@
 #   Source shell-independent (shared) profile config-file.
     source "$HOME/.config/shell/profile"
  
-#   Define path to zsh config-file.
-    export ZSHRC="$XDG_CONFIG_HOME/zsh/zshrc"
-
 #   Define path to oh-my-zsh installation.
     export ZSH="$XDG_CONFIG_HOME/zsh/oh-my-zsh"
 
 #   TODO ... (description)
     export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump"
 
-#   TODO ... (description)
-  # export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+#   Define path to `zsh` configuration.
+#   -> This eliminates the need for a `.zshrc` in your home directory.
+    export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Web search-engines                                                        │
