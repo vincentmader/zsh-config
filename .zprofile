@@ -5,16 +5,18 @@
 
 #   Source shell-independent (shared) profile config-file.
     source "$HOME/.config/shell/profile"
- 
-#   Define path to oh-my-zsh installation.
-    export ZSH="$XDG_CONFIG_HOME/zsh/oh-my-zsh"
-
-#   TODO ... (description)
-    export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump"
 
 #   Define path to `zsh` configuration.
-#   -> This eliminates the need for a `.zshrc` in your home directory.
     export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+#   -> This eliminates the need for a `.zshrc` in your home directory.
+
+#   Define location for `zcompdump` files. 
+    export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump"
+#   The `zcompdump` files are produced to speed up the running of compinit, 
+#   which initializes the shell completion in zsh
+
+#   Define path to oh-my-zsh installation.
+    export ZSH="$XDG_DATA_HOME/zsh/oh-my-zsh"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Web search-engines                                                        │
@@ -53,14 +55,15 @@
         yandex          "https://yandex.ru/yandsearch?text="
         youtube         "https://www.youtube.com/results?search_query="
     )
-
     
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ List of plugins                                                           │
 # ╰───────────────────────────────────────────────────────────────────────────╯
 
+    ZSH_THEME="fletcherm"
+
 #   Define list of plugins to be loaded by oh-my-zsh.
-#     plugins=(
+    plugins=(
 #       # archlinux
 #         colored-man-pages   # Add color to man-pages.
 #         copyfile	    # Copy file to clipboard: `copyfile <file>`.
@@ -74,24 +77,32 @@
 #       # macos
 #       # pip
 #       # python
-#         sudo                # Press `Escape` twice to sudo repeat command.
+        sudo                # Press `Escape` twice to sudo repeat command.
 #       # taskwarrior         # Add auto-completion for taskwarrior.
-#         web-search
+        web-search
 #       # wd                  
 #         zsh-autosuggestions
-#     )
-#     source $ZSH/oh-my-zsh.sh
+    )
+    source $ZSH/oh-my-zsh.sh
+
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Shell auto-complete                                                       │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+
+    dir="$ZSH/plugins/zsh-autocomplete"
+    url="https://github.com/marlonrichert/zsh-autocomplete.git"
+    [ -r $dir ] || git clone --depth 1 -- "$url" "$dir"
+    source "$dir/zsh-autocomplete.plugin.zsh"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Shell syntax highlighting                                                 │
 # ╰───────────────────────────────────────────────────────────────────────────╯
 
-#   Define path to oh-my-zsh plugins.
-#     PATH_TO_PLUGINS="$XDG_CONFIG_HOME/zsh/oh-my-zsh/plugins" 
-
 #   Enable syntax-highlighting for zsh.
-#    source $PATH_TO_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+    dir="$ZSH/plugins/zsh-syntax-highlighting"
+    url="https://github.com/zsh-users/zsh-syntax-highlighting.git"
+    [ -r $dir ] || git clone "$url" "$dir"
+    source "$dir/zsh-syntax-highlighting.zsh"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Shell command history                                                     │
