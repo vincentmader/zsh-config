@@ -81,7 +81,6 @@
 #       # taskwarrior         # Add auto-completion for taskwarrior.
         web-search
 #       # wd                  
-#         zsh-autosuggestions
     )
     source $ZSH/oh-my-zsh.sh
 
