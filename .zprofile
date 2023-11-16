@@ -130,16 +130,16 @@
 # ╰───────────────────────────────────────────────────────────────────────────╯
 
 #   Make command-suggestions case-insensitive. 
-    export CASE_SENSITIVE="false"  
+    # export CASE_SENSITIVE="false"  
 
 #   Define strategy for getting command-suggestions.
-    export ZSH_AUTOSUGGEST_STRATEGY=(
-        history 
-        completion
-    )
+    # export ZSH_AUTOSUGGEST_STRATEGY=(
+    #     history 
+    #     completion
+    # )
 
 #   Define color of command suggestions.
-    export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#505050"  
+    # export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#505050"  
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Java                                                                      │
