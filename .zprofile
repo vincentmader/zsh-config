@@ -88,10 +88,10 @@
 # │ Shell auto-complete                                                       │
 # ╰───────────────────────────────────────────────────────────────────────────╯
 
-    dir="$ZSH/plugins/zsh-autocomplete"
-    url="https://github.com/marlonrichert/zsh-autocomplete.git"
-    [ -r $dir ] || git clone --depth 1 -- "$url" "$dir"
-    source "$dir/zsh-autocomplete.plugin.zsh"
+    # dir="$ZSH/plugins/zsh-autocomplete"
+    # url="https://github.com/marlonrichert/zsh-autocomplete.git"
+    # [ -r $dir ] || git clone --depth 1 -- "$url" "$dir"
+    # source "$dir/zsh-autocomplete.plugin.zsh"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Shell syntax highlighting                                                 │
