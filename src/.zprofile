@@ -4,7 +4,7 @@
 # -----------------------------------------------------------------------------
 
 #   Source shell-independent (shared) profile config-file.
-    source "$HOME/.config/shell/profile"
+    source "$HOME/.config/sh/profile"
 
 #   Define path to `zsh` configuration.
     export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

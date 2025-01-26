@@ -48,10 +48,10 @@
 # ╰───────────────────────────────────────────────────────────────────────────╯
 
 #   Source shell-independent config:
-    source "$XDG_CONFIG_HOME/shell/shellrc"
+    source "$XDG_CONFIG_HOME/sh/shellrc"
 
 #   Source aliases:
-    source "$XDG_CONFIG_HOME/shell/aliasrc"
+    source "$XDG_CONFIG_HOME/sh/aliasrc"
 
 #   Source prompter:
 #   NOTE: Switch between e.g. `prompter_v1` and prompter_v2.
@@ -79,7 +79,7 @@
 
 #   Check if tmux is running.
 #   If not: start it!                       (and define default sessions: misc)
-    [ -z "${TMUX}" ] && tmux new-session -A -s "     misc              "
+    #[ -z "${TMUX}" ] && tmux new-session -A -s "     misc              "
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Startup                                                                   │
@@ -268,3 +268,5 @@ fi
    'm:{a-z\-}={A-Z\_}' \
    'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
    'r:|?=** m:{a-z\-}={A-Z\_}'
+
+source /Users/vinc/.config/broot/launcher/bash/br
