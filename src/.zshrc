@@ -269,8 +269,6 @@ fi
    'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
    'r:|?=** m:{a-z\-}={A-Z\_}'
 
-source /Users/vinc/.config/broot/launcher/bash/br
-
 # opencode
 export PATH=/Users/vinc/.opencode/bin:$PATH
 
