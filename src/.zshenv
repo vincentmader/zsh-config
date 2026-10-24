@@ -13,3 +13,10 @@
 
 #   Read `.zprofile` and `.zshrc` from here, so `~/.zshrc` is never used.
     export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+#   Rust toolchain. Set here, not only in `sh/profile`, so that scripts and
+#   agent shells (which are neither login nor interactive) find cargo too.
+    export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+    export CARGO_HOME="$XDG_DATA_HOME/cargo"
+    path=("$CARGO_HOME/bin" $path)
+    typeset -U path
