@@ -17,24 +17,140 @@
     bindkey -v
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
-# │ Zcompdump setup                                                           │
+# │ Shell command history                                                     │
 # ╰───────────────────────────────────────────────────────────────────────────╯
-#   -> can speed up auto-completion
 
-#   TODO ... (Add description.)
-    autoload -U compinit
+#   Enable sharing of command history between multiple shell sessions.
+    setopt sharehistory
 
-#   TODO ... (Add description.)
+#   Define path to command-history file. Set here rather than in a profile, so
+#   that every interactive shell (login or not) writes to the same file.
+    HISTFILE="$XDG_STATE_HOME/zsh/history"
+    mkdir -p "${HISTFILE:h}"
+#   TODO: Setup having only a single (shell-independent) history file?
+
+#   Define format of timestamps for command-history.
+    export HIST_STAMPS="yyyy-mm-dd"
+
+#   Define nr. of command-history entries saved in memory.
+    export HISTSIZE=10000
+
+#   Define nr. of command-history entries saved to file.
+    export SAVEHIST=100000
+
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Web search-engines                                                        │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+
+#   Define web search-engines, use with e.g. `web_search wikipedia euler`
+    ZSH_WEB_SEARCH_ENGINES=(
+        4chan           "https://4chan.org/"
+        amazon          "https://amazon.de/s?k="
+        archive         "https://web.archive.org/web/*/"
+        archwiki        "https://wiki.archlinux.org/?search="
+        arxiv           "https://arxiv.org/search/?searchtype=all&source=header&query="
+        baidu           "https://www.baidu.com/s?wd="
+        bing            "https://www.bing.com/search?q="
+        brave           "https://search.brave.com/search?q="
+        duckduckgo      "https://www.duckduckgo.com/?q="
+        ebay            "https://ebay.de/sch/"
+        ecosia          "https://www.ecosia.org/search?q="
+        github          "https://github.com/search?q="
+        github_vm       "https://github.com/vincentmader/"
+        goodreads       "https://www.goodreads.com/search?q="
+        google          "https://www.google.com/search?q="
+        linkedin        "https://linkedin.com/search/results/all/?keywords="
+        piratebay       "https://piratebay.party/search/"
+        r               "https://www.reddit.com/r/"
+        reddit          "https://www.reddit.com/search/?q="
+        scholar         "https://scholar.google.com/scholar?q="
+        stackoverflow   "https://stackoverflow.com/search?q="
+        startpage       "https://www.startpage.com/do/search?q="
+        twitter         "https://twitter.com/"
+        urbandictionary "https://urbandictionary.com/define.php?term="
+        wikipedia       "https://en.wikipedia.org/?search="
+        wiktionary      "https://en.wiktionary.org/?search="
+        wolframalpha    "https://www.wolframalpha.com/input/?i="
+        yahoo           "https://search.yahoo.com/search?p="
+        yandex          "https://yandex.ru/yandsearch?text="
+        youtube         "https://www.youtube.com/results?search_query="
+    )
+
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Completion & oh-my-zsh                                                    │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+#   oh-my-zsh runs `compinit` itself, using the dump file at $ZSH_COMPDUMP.
+#   Running it a second time here would rebuild the dump on every start.
+
+#   Define path to oh-my-zsh installation.
+    ZSH="$XDG_DATA_HOME/zsh/oh-my-zsh"
+
+#   Define location for `zcompdump` files.
+    ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump"
+#   The `zcompdump` files are produced to speed up the running of compinit,
+#   which initializes the shell completion in zsh
+
+#   Show completions in a menu that can be navigated.
     zstyle ':completion:*' menu select
-
-#   TODO ... (Add description.)
     zmodload zsh/complist
 
-#   TODO ... (Add description.)
-    compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+#   Add completions for grok.
+    fpath=(~/.grok/completions/zsh $fpath)
+
+#   Without this directory, compinit cannot save its dump and starts slowly.
+    mkdir -p "${ZSH_COMPDUMP:h}"
+
+    ZSH_THEME="fletcherm"
+
+#   Define list of plugins to be loaded by oh-my-zsh.
+    plugins=(
+#       # archlinux
+#         colored-man-pages   # Add color to man-pages.
+#         copyfile	    # Copy file to clipboard: `copyfile <file>`.
+#         copypath	    # Copy pwd to clipboard:  `copypath <path>`.
+#         copybuffer          # Copy the text in the prompt via `Ctrl-o`.
+#       # dirhistory          # Use `Alt+Left/Right` to move through history, `Alt+Up` to go to parent.
+#       # emoji-clock	    # Display time (30min. accuracy).
+#         fzf                 # Enable fuzzy auto-completion.
+#         git
+#       # npm
+#       # macos
+#       # pip
+#       # python
+        sudo                # Press `Escape` twice to sudo repeat command.
+#       # taskwarrior         # Add auto-completion for taskwarrior.
+        web-search
+#       # wd
+    )
+    source $ZSH/oh-my-zsh.sh
 
 #   Include hidden files.
-    _comp_options+=(globdots)  
+    _comp_options+=(globdots)
+
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Shell auto-complete                                                       │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+
+    # dir="$ZSH/plugins/zsh-autocomplete"
+    # url="https://github.com/marlonrichert/zsh-autocomplete.git"
+    # [ -r $dir ] || git clone --depth 1 -- "$url" "$dir"
+    # source "$dir/zsh-autocomplete.plugin.zsh"
+
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Command auto-suggest                                                      │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+
+#   Make command-suggestions case-insensitive.
+    # export CASE_SENSITIVE="false"
+
+#   Define strategy for getting command-suggestions.
+    # export ZSH_AUTOSUGGEST_STRATEGY=(
+    #     history
+    #     completion
+    # )
+
+#   Define color of command suggestions.
+    # export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#505050"
 
 # ╭───────────────────────────────────────────────────────────────────────────╮
 # │ Zoxide                                                                    │
@@ -269,8 +385,16 @@ fi
    'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
    'r:|?=** m:{a-z\-}={A-Z\_}'
 
-# opencode
-export PATH=/Users/vinc/.opencode/bin:$PATH
-
 # Sono: sono-agent <task> spawner
-[ -r "/Volumes/org-data/org-2024-11-26/c_code/cz_vibe_coding/2026-06-07_sono_in_rust_by_Claude/utils/sono-agent.sh" ] && source "/Volumes/org-data/org-2024-11-26/c_code/cz_vibe_coding/2026-06-07_sono_in_rust_by_Claude/utils/sono-agent.sh"  # Sono: sono-agent <task> spawner
+[ -r "$HOME/org/c_code/cz_vibe_coding/2026-06-07_sono_in_rust_by_Claude/utils/sono-agent.sh" ] && source "$HOME/org/c_code/cz_vibe_coding/2026-06-07_sono_in_rust_by_Claude/utils/sono-agent.sh"
+
+# ╭───────────────────────────────────────────────────────────────────────────╮
+# │ Shell syntax highlighting                                                 │
+# ╰───────────────────────────────────────────────────────────────────────────╯
+#   Must be sourced last: it wraps every widget defined before it.
+
+#   Enable syntax-highlighting for zsh.
+    dir="$ZSH/plugins/zsh-syntax-highlighting"
+    url="https://github.com/zsh-users/zsh-syntax-highlighting.git"
+    [ -r $dir ] || git clone "$url" "$dir"
+    source "$dir/zsh-syntax-highlighting.zsh"
