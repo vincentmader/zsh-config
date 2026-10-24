@@ -65,7 +65,7 @@
     DISABLE_UNTRACKED_FILES_DIRTY="true"  
 
 #   Setup thefuck auto-correction.
-    eval $(thefuck --alias)
+#    eval $(thefuck --alias)
 
 #   TODO ... (Add description.)
     export KEYTIMEOUT=1
@@ -270,3 +270,9 @@ fi
    'r:|?=** m:{a-z\-}={A-Z\_}'
 
 source /Users/vinc/.config/broot/launcher/bash/br
+
+# opencode
+export PATH=/Users/vinc/.opencode/bin:$PATH
+
+# Sono: sono-agent <task> spawner
+[ -r "/Volumes/org-data/org-2024-11-26/c_code/cz_vibe_coding/2026-06-07_sono_in_rust_by_Claude/utils/sono-agent.sh" ] && source "/Volumes/org-data/org-2024-11-26/c_code/cz_vibe_coding/2026-06-07_sono_in_rust_by_Claude/utils/sono-agent.sh"  # Sono: sono-agent <task> spawner
